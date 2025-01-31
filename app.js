@@ -2,6 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const cookieParser= require('cookie-parser');
 const authRoutes = require('./routes/authRoutes');
+const PORT = process.env.PORT || 3000
 const {requireAuth, checkUser} = require('./middleware/authMiddleware');
 
 require("dotenv").config();
@@ -20,8 +21,8 @@ app.set('view engine', 'ejs');
 
 mongoose.connect(process.env.DB_URI)
 .then(()=> console.log('Connected to MongoDB'))
-.then((result) => app.listen(3000, ()=> {
-    console.log('Listening on port 3000');
+.then((result) => app.listen(PORT, ()=> {
+    console.log(`Listening on port ${PORT}`);
     
   }))
   .catch((err) => console.log(err));
